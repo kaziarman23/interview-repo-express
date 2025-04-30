@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
@@ -11,10 +11,12 @@ const connectDB = require("./Configs/Database.js");
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+dotenv.config();
 
 // Connecting Database
 connectDB();
 
+// Routers
 app.get("/", HomeRoute);
 
 app.listen(port, () => {
